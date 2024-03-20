@@ -10,6 +10,11 @@ use App\Models\Report;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $tasks = Task::all();
@@ -17,6 +22,21 @@ class TaskController extends Controller
         $pembimbings = Pembimbing::all();
         return view('home.task.index', compact(['tasks','karyawans', 'pembimbings']));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->query('search');
+        $tasks = Task::query();
+
+        if ($search) {
+            $tasks->where('nama_task', 'like', '%' . $search . '%');
+
+        }
+
+        $tasks = $tasks->paginate(10);
+
+        return view('home.task.index', ['tasks' => $tasks]);
+        }
     
 
     public function store(Request $request)

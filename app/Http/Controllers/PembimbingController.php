@@ -7,11 +7,31 @@ use App\Models\Pembimbing;
 
 class PembimbingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $pembimbings = Pembimbing::all();
         return view('home.pembimbing.index', compact('pembimbings'));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->query('search');
+        $pembimbings = Pembimbing::query();
+
+        if ($search) {
+            $pembimbings->where('nama', 'like', '%' . $search . '%');
+
+        }
+
+        $pembimbings = $pembimbings->paginate(10);
+
+        return view('home.pembimbing.index', ['pembimbings' => $pembimbings]);
+        }
 
 
     public function store(Request $request)

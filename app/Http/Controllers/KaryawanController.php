@@ -6,12 +6,30 @@ use Illuminate\Http\Request;
 use App\Models\Karyawan; 
 class KaryawanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
         $karyawans = Karyawan::all();
         return view('home.karyawan.index', compact('karyawans'));
     }
+    public function search(Request $request)
+    {
+        $search = $request->query('search');
+        $karyawans = Karyawan::query();
+
+        if ($search) {
+            $karyawans->where('nama', 'like', '%' . $search . '%');
+
+        }
+
+        $karyawans = $karyawans->paginate(10);
+
+        return view('home.karyawan.index', ['karyawans' => $karyawans]);
+        }
 
 
     public function store(Request $request)

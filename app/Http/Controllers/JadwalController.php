@@ -9,12 +9,31 @@ use App\Models\Pembimbing;
 
 class JadwalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $jadwals = Jadwal::all();
         $karyawans = Karyawan::join('users', 'users.email', '=', 'karyawans.email')->select('users.id', 'karyawans.nama')->get();
         $pembimbings = Pembimbing::join('users', 'users.email', '=', 'pembimbings.email')->select('users.id', 'pembimbings.nama')->get();
         return view('home.jadwal.index', compact(['jadwals','karyawans','pembimbings']));
+    }
+    public function search(Request $request)
+    {
+        $search = $request->query('search');
+        $jadwals = Jadwal::query();
+
+        if ($search) {
+            $jadwals->where('tanggal', 'like', '%' . $search . '%');
+
+        }
+
+        $jadwals = $jadwals->paginate(10);
+
+        return view('home.jadwal.index', ['jadwals' => $jadwals]);
     }
 
     public function store(Request $request)

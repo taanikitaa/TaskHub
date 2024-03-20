@@ -63,6 +63,15 @@
                             <button class="btn btn-primary btn-tambah" style="background-color: #365486;" id="open-modal">Tambah Jadwal</button>
                         </div>
                         <div class="card-body">
+                        <form action="{{ route('jadwal.search') }}" method="GET" class="flex ml-auto"> 
+                            @csrf
+                            <div class="flex items-center border rounded-md px-2 py-1" >
+                                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search..." class="flex-1 outline-none" style="margin-left: 80%">
+                                <button type="submit" class="outline-none">
+                                    <i class="fas fa-search text-gray-500 hover:text-gray-700 transition duration-300"></i>
+                                </button>
+                            </div>                        
+                        </form>
                             <table id="example" class="table table-striped table-hover table-bordered">
                                 <thead>
                                     <tr>

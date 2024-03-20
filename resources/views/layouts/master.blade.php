@@ -88,16 +88,15 @@
       <div class="container-fluid py-1 px-3">
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group input-group-outline">
-              <label class="form-label">Telusuri</label>
-              <input type="text" class="form-control">
-            </div>
+              
           </div>
           <ul class="navbar-nav justify-content-end">
-          @auth
-              <i class="fas fa-user-circle fa-fw me-2" style="font-size: 1.2em;"></i> <b>{{ Auth::user()->name }}</b>
-          @endauth
-        </ul>
+              @auth
+                  <b style="font-size: 1em; outline: 0.5px solid white; border-radius: 10px; padding: 10px;">
+                      <i class="fas fa-user-circle fa-fw me-2"></i>{{ Auth::user()->name }}
+                  </b>
+              @endauth
+          </ul>
           </li>
             
           </ul>

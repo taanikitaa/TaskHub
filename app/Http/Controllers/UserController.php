@@ -11,10 +11,30 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $users = User::all();
         return view('home.admin.index', compact('users'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->query('search');
+        $users = User::query();
+
+        if ($search) {
+            $users->where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+        }
+
+        $users = $users->paginate(10);
+
+        return view('home.admin.index', ['users' => $users]);
     }
 
     public function store(Request $request)
