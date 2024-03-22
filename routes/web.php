@@ -71,6 +71,7 @@ Route::get('/task/search', [TaskController::class, 'search'])->name('task.search
 
 Route::get('/home/report', [ReportController::class, 'index'])->name('home.report.index')->middleware('auth');
 Route::get('/report', [ReportController::class, 'index'])->name('report.index')->middleware('auth');
+Route::get('/report/{report}', [ReportController::class, 'show'])->name('report.show');
 Route::get('/report/{report}/edit', [ReportController::class, 'edit'])->name('report.edit')->middleware('auth');
 Route::put('/report/{report}', [ReportController::class, 'update'])->name('report.update')->middleware('auth');
 Route::delete('/report/{report}', [ReportController::class, 'destroy'])->name('report.destroy')->middleware('auth');

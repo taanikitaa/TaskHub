@@ -95,13 +95,7 @@
                             <p class="card-text">Pembimbing: {{ $task->pembimbing->nama }}</p> 
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                        @foreach($report as $report)
-                        @if($report->status != 'selesai')
-                            <a href="{{ route('report.edit', $report->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">Edit</a>
-                        @else
-                            <b><span >Selesai</span></b>
-                        @endif
-                        @endforeach
+                        <button class="btn btn-primary" style="background-color: #365486;" id="open-modal">Report</button>
                         </div>
                     </div>
                 </div>

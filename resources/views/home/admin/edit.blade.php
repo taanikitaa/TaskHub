@@ -3,10 +3,11 @@
 @section('content')
 
 <style>
-    .form-control {
+        .form-control {
         border: 1px solid #ced4da; 
         border-radius: 5px; 
         margin-top: 5px; 
+        padding: 8px;
     }
 </style>
 <div class="content-wrapper" style="padding: 20px;">

@@ -86,16 +86,24 @@
             </div>
             <div class="card-body">
                 <p class="lead">Hi, Selamat datang di aplikasi TaskHub</p>
-                @can('manage pembimbing data')
                 <div class="shortcut-buttons">
+                    @can('manage admin data')
                     <a href="/users" class="btn btn-outline-dark"><i class="fas fa-user"></i> User</a>
                     <a href="/pembimbing" class="btn btn-outline-dark"><i class="fas fa-chalkboard-teacher"></i> Pembimbing</a>
+                    @endcan
+                    @can('manage karyawan data')
                     <a href="/karyawan" class="btn btn-outline-dark"><i class="fas fa-user-tie"></i> Karyawan</a>
                     <a href="/task" class="btn btn-outline-dark"><i class="fas fa-tasks"></i> Task</a>
                     <a href="/report" class="btn btn-outline-dark"><i class="fas fa-chart-bar"></i> Report</a>
                     <a href="/jadwal" class="btn btn-outline-dark"><i class="far fa-calendar-alt"></i> Jadwal</a>
+                    @endcan
+                    @can('manage report task')
+                    <a href="/tasks/karyawan" class="btn btn-outline-dark"><i class="fas fa-tasks"></i> Task</a>
+                    <a href="{{route('task.report')}}" class="btn btn-outline-dark"><i class="fas fa-chart-bar"></i> Report</a>
+                    <a href="/jadwal/karyawan" class="btn btn-outline-dark"><i class="far fa-calendar-alt"></i> Jadwal</a>
+                    @endcan
                 </div>
-                @endcan
+                
             </div>
         </div>
     </div>
