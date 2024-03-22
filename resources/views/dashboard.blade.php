@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('content')
+<!-- Memasukkan CSS FullCalendar -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet">
+<!-- Memasukkan JavaScript FullCalendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+
 
 <div class="container-fluid py-4">
     <div class="row">
@@ -105,6 +110,35 @@
                 </div>
                 
             </div>
+            
         </div>
     </div>
+    <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
+							<div class="card flex-fill">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Calendar</h5>
+								</div>
+								<div class="card-body d-flex">
+									<div class="align-self-center w-100">
+										<div class="chart">
+											<div id="calendar"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+                    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth' // Menampilkan tampilan bulan
+      // Anda dapat menambahkan konfigurasi tambahan sesuai kebutuhan Anda
+    });
+    calendar.render();
+  });
+</script>
+
 @endsection

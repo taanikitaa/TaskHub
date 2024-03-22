@@ -68,7 +68,7 @@
       opacity: 0 !important
     }
     .bg-dcf2f1 {
-    background-color: #DCF2F1 !important;
+    background-color: #DFF5FF !important;
     }
 
   </style>

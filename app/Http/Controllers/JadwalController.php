@@ -33,8 +33,10 @@ class JadwalController extends Controller
 
         $jadwals = $jadwals->paginate(10);
 
-        return view('home.jadwal.index', ['jadwals' => $jadwals]);
-    }
+        $karyawans = Karyawan::all();
+        $pembimbings = Pembimbing::all();
+
+        return view('home.jadwal.index', compact('jadwals', 'karyawans', 'pembimbings'));    }
 
     public function store(Request $request)
     {

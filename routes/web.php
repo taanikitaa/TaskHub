@@ -78,6 +78,7 @@ Route::delete('/report/{report}', [ReportController::class, 'destroy'])->name('r
 Route::get('/report/search', [ReportController::class, 'search'])->name('report.search');
 
 
+
 Route::get('/home/pembimbing', [PembimbingController::class, 'index'])->name('home.pembimbing.index')->middleware('auth');
 Route::get('/pembimbing', [PembimbingController::class, 'index'])->name('pembimbing.index')->middleware('auth');
 Route::post('/pembimbing', [PembimbingController::class, 'store'])->name('pembimbing.store')->middleware('auth');

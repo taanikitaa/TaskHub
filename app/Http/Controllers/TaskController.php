@@ -30,14 +30,14 @@ class TaskController extends Controller
 
         if ($search) {
             $tasks->where('nama_task', 'like', '%' . $search . '%');
-
         }
 
         $tasks = $tasks->paginate(10);
+        $karyawans = Karyawan::all();
+        $pembimbings = Pembimbing::all();
 
-        return view('home.task.index', ['tasks' => $tasks]);
-        }
-    
+        return view('home.task.index', compact('tasks', 'karyawans', 'pembimbings'));
+    }
 
     public function store(Request $request)
     {
