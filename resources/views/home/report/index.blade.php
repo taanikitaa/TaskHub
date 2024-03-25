@@ -6,13 +6,14 @@
     margin-bottom: 5px; 
     
 }
-.report-card {
+    .card {
         margin-bottom: 20px;
-        max-width: 400px;
+        overflow: auto;
     }
 
-    .report-card .card-body {
-        padding: 20px;
+
+    .report-card .table {
+        width: 100%; 
     }
 
     .report-card .card-header {
@@ -29,6 +30,7 @@
         margin-right: 10px;
     }
 
+
 </style>
 @can('manage report task data')
 <div class="content-wrapper" style="padding: 20px;">
@@ -44,17 +46,10 @@
                             @can('manage report task')
                             <h4>Report Task</h4>
                             @endcan
+
+                        
                         </div>
                         <div class="card-body">
-                        <form action="{{ route('report.search') }}" method="GET" class="flex ml-auto"> 
-                            <div class="flex items-center border rounded-md px-2 py-1" >
-                                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search..." class="flex-1 outline-none" style="margin-left: 80%">
-                                <button type="submit" class="outline-none">
-                                    <i class="fas fa-search text-gray-500 hover:text-gray-700 transition duration-300"></i>
-                                </button>
-                            </div>                        
-                        </form>
-
                         <table id="example" class="table table-striped table-hover table-bordered">
                                 <thead>
                                     <tr>
@@ -63,9 +58,9 @@
                                         <th>Tanggal Report</th>
                                         <th>Dokumen</th>
                                         <th>Keterangan</th>
-                                        <th>ID Karyawan</th>
-                                        <th>ID Pembimbing</th>
-                                        <th>ID Task</th>
+                                        <th>Karyawan</th>
+                                        <th>Pembimbing</th>
+                                        <th>Task</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -78,10 +73,14 @@
                                         <td>{{ $report->tanggal_report }}</td>
                                         <td>{{ $report->dokumen }}</td>
                                         <td>{{ $report->link_video }}</td>
-                                        <td>{{ $report->id_karyawan }}</td>
-                                        <td>{{ $report->id_pembimbing }}</td>
-                                        <td>{{ $report->id_task }}</td>
-                                        <td>{{ $report->status }}</td>
+                                        <td>{{ $report->karyawan->nama }}</td>
+                                        <td>{{ $report->pembimbing->nama }}</td>
+                                        <td>{{ $report->task->nama_task }}</td>
+                                        <td>@if($report->status == 'selesai')
+                                            <span class="badge badge-success" style="color: green">{{ $report->status }}</span>
+                                        @else
+                                            <span class="badge badge-danger" style="color: red">{{ $report->status }}</span>
+                                        @endif</td>
                                         <td>
                                             @can('manage report task')
                                             <a href="{{ route('report.edit', $report->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">Edit</a>
@@ -95,7 +94,7 @@
                                             <a href="{{ route('report.show', $report->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">View</a>
                                             @endcan
                                         </td>
-                                    </tr>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -123,10 +122,15 @@
                             <p>Tanggal Report: {{ $report->tanggal_report }}</p>
                             <p>Dokumen: {{ $report->dokumen }}</p>
                             <p>Keterangan: {{ $report->link_video }}</p>
-                            <p>ID Karyawan: {{ $report->id_karyawan }}</p>
-                            <p>ID Pembimbing: {{ $report->id_pembimbing }}</p>
-                            <p>ID Task: {{ $report->id_task }}</p>
-                            <p>Status: {{ $report->status }}</p>
+                            <p>Karyawan: {{ $report->karyawan->nama }}</p>
+                            <p>Pembimbing: {{ $report->pembimbing->nama }}</p>
+                            <p>Task: {{ $report->task->nama_task }}</p>
+                            <p>Status: @if($report->status == 'selesai')
+                                <span class="badge badge-success" style="color: green">{{ $report->status }}</span>
+                            @else
+                                <span class="badge badge-danger" style="color: red">{{ $report->status }}</span>
+                            @endif
+                             </p>
                             @can('manage report task')
                             <a href="{{ route('report.edit', $report->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">Edit</a>
                             <form action="{{ route('report.destroy', $report->id) }}" method="POST" style="display: inline;">

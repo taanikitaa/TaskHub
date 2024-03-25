@@ -37,24 +37,29 @@
                                     </div>
                                     <div class="detail-item">
                                         <strong class="detail-label">ID Karyawan:</strong>
-                                        <span>{{ $report->id_karyawan }}</span>
+                                        <span>{{ $report->karyawan->nama }}</span>
                                     </div>
                                     <div class="detail-item">
                                         <strong class="detail-label">ID Pembimbing:</strong>
-                                        <span>{{ $report->id_pembimbing }}</span>
+                                        <span>{{ $report->pembimbing->nama }}</span>
                                     </div>
                                     <div class="detail-item">
                                         <strong class="detail-label">ID Task:</strong>
-                                        <span>{{ $report->id_task }}</span>
+                                        <span>{{ $report->task->nama_task }}</span>
                                     </div>
                                     <div class="detail-item">
                                         <strong class="detail-label">Status:</strong>
-                                        <span>{{ $report->status }}</span>
+                                        @if($report->status == 'selesai')
+                                            <span class="badge badge-success" style="color: green">{{ $report->status }}</span>
+                                        @else
+                                            <span class="badge badge-danger" style="color: red">{{ $report->status }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <a href="{{ route('report.index') }}" class="btn btn-primary" style="background-color: #7A8FB2;">Kembali</a>
+                            <a href="{{ route('feedback.create', ['id' => $report->id]) }}" class="btn btn-primary" style="background-color: #7A8FB2;">Feedback</a>
                         </div>
                     </div>
                 </div>

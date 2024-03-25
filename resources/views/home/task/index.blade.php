@@ -77,8 +77,8 @@
                                         <th>Nama Task</th>
                                         <th>Deadline</th>
                                         <th>Level</th>
-                                        <th>ID Karyawan</th>
-                                        <th>ID Pembimbing</th>
+                                        <th>Karyawan</th>
+                                        <th>Pembimbing</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -89,8 +89,8 @@
                                         <td>{{ $task->nama_task }}</td>
                                         <td>{{ $task->deadline }}</td>
                                         <td>{{ $task->level }}</td>
-                                        <td>{{ $task->id_karyawan }}</td>
-                                        <td>{{ $task->id_pembimbing }}</td>
+                                        <td>{{ $task->karyawan->nama }}</td>
+                                        <td>{{ $task->pembimbing->nama }}</td>
                                         <td>
                                         @can('manage task data')
                                             <a href="{{ route('task.edit', $task->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">Edit</a>
@@ -133,10 +133,13 @@
                 </div>
                 <div class="form-group">
                     <label for="status">Level</label>
-                    <input type="text" class="form-control" id="level" name="level" placeholder="Masukkan level">
+                    <select class="form-control" id="level" name="level">
+                        <option value="Urgent">Urgent</option>
+                        <option value="Not Urgent">Not Urgent</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                <label for="id_karyawan">ID Karyawan</label>
+                <label for="id_karyawan">Karyawan</label>
                 <select class="form-control" id="id_karyawan" name="id_karyawan">
                     <option value="">Pilih Karyawan</option>
                     @foreach($karyawans as $karyawan)
@@ -145,7 +148,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="id_pembimbing">ID Pembimbing</label>
+                <label for="id_pembimbing"> Pembimbing</label>
                 <select class="form-control" id="id_pembimbing" name="id_pembimbing">
                     <option value="">Pilih Pembimbing</option>
                     @foreach($pembimbings as $pembimbing)

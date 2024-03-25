@@ -95,8 +95,12 @@
                             <p class="card-text">Pembimbing: {{ $task->pembimbing->nama }}</p> 
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                        <button class="btn btn-primary" style="background-color: #365486;" id="open-modal">Report</button>
-                        </div>
+                        @if($task->report)
+                        <span class="badge badge-success" style="color: green">{{ $task->report->status }}</span>
+                        @else
+                        <a href="#" id="open-modal" class="btn btn-primary" style="background-color: #365486;"> Report</a>
+                        @endif
+                    </div>
                     </div>
                 </div>
                 @endforeach
@@ -174,14 +178,8 @@
 
 <script>
     document.getElementById("open-modal").addEventListener("click", function() {
-        var status = this.getAttribute("data-status");
-        if(status == 'selesai') {
-            alert("Task sudah selesai!");
-        } else {
-            document.getElementById("tambah-modal").style.display = "block";
-        }
+        document.getElementById("tambah-modal").style.display = "block";
     });
-
 
     document.querySelector(".close").addEventListener("click", function() {
         document.getElementById("tambah-modal").style.display = "none";
@@ -193,4 +191,5 @@
         }
     });
 </script>
+
 @endsection

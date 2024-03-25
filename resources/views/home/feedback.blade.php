@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Jadwal')
+@section('title', 'Feedback')
 @section('content')
 <style>
     .card {
@@ -13,10 +13,11 @@
     }
 
     .card-header {
-        background-color: #365486;
+        background: linear-gradient(to right, #365486, #185C8F);
         color: #fff;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+        padding: 15px;
     }
 
     .card-body {
@@ -42,21 +43,22 @@
 <div class="content-wrapper" style="padding: 20px;">
     <section class="content">
         <div class="content-fluid">
-            <h2>Jadwal Masuk</h2> 
+            <h2>Feedback Report</h2> 
             <br>
             <div class="row">
-                @foreach($karyawanJadwal as $jadwal)
+                @foreach($feedbacks as $feedback)
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <i class="far fa-calendar-alt card-icon"></i>
-                                <span style="color: #fff;">Tanggal: {{ \Carbon\Carbon::parse($jadwal->tanggal)->translatedFormat('l, j F Y') }}</span>                            </h5>
+                                <i class="far fa-comment card-icon"></i>
+                                <span style="color: #fff;">Feedback dari "{{ $feedback->report ? $feedback->report->nama_report : 'Report Tidak Ditemukan' }}"</span>
+                            </h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Waktu: {{ $jadwal->waktu }}</p>
-                            <p class="card-text">Tempat: {{ $jadwal->tempat }}</p>
-                            <p class="card-text">Pembimbing: {{ $jadwal->pembimbing->nama }}</p> 
+                            <p class="card-text"><strong>Karyawan:</strong> {{ $feedback->karyawan ? $feedback->karyawan->nama : 'Belum ditentukan' }}</p>
+                            <p class="card-text"><strong>Pembimbing:</strong> {{ $feedback->pembimbing ? $feedback->pembimbing->nama : 'Belum ditentukan' }}</p>
+                            <p class="card-text"><strong>Feedback:</strong> {{ $feedback->feedback }}</p>
                         </div>
                     </div>
                 </div>

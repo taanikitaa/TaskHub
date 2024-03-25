@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use App\Models\Karyawan;
 use App\Models\Pembimbing;
+use Carbon\Carbon;
 
 class JadwalController extends Controller
 {
@@ -27,7 +28,8 @@ class JadwalController extends Controller
         $jadwals = Jadwal::query();
 
         if ($search) {
-            $jadwals->where('tanggal', 'like', '%' . $search . '%');
+            $jadwals->where('tanggal', 'like', '%' . $search . '%')
+                    ->orWhere('tempat', 'like', '%' . $search . '%');
 
         }
 
@@ -47,6 +49,8 @@ class JadwalController extends Controller
             'id_karyawan' => 'required|integer',
             'id_pembimbing' => 'required|integer',
         ]);
+        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
+        $request->merge(['tanggal' => $tanggal]);
 
         Jadwal::create($request->all());
 
@@ -71,6 +75,8 @@ class JadwalController extends Controller
             'id_karyawan' => 'required|integer',
             'id_pembimbing' => 'required|integer',
         ]);
+        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
+        $request->merge(['tanggal' => $tanggal]);
 
         $jadwal->update($request->all());
 

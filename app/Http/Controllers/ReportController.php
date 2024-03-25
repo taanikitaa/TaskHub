@@ -26,20 +26,8 @@ class ReportController extends Controller
         return view('home.report.index', compact(['reports', 'karyawans', 'pembimbings', 'tasks']));
 
     }
-    public function search(Request $request)
-    {
-        $search = $request->query('search');
-        $reports = Report::query();
 
-        if ($search) {
-            $reports->where('nama_report', 'like', '%' . $search . '%');
 
-        }
-
-        $reports = $reports->paginate(10);
-
-        return view('home.report.index', ['reports' => $reports]);
-        }
     public function show($id)
     {
         $report = Report::findOrFail($id);

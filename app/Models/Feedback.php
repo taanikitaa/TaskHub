@@ -4,24 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\karyawan;
-use App\Models\Pembimbing;
-use Carbon\Carbon;
 
-class Jadwal extends Model
+class Feedback extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'tanggal',
-        'hari',
-        'tempat',
-        'id_karyawan',
+        'feedback',
+        'id_report',
         'id_pembimbing',
+        'id_karyawan',
     ];
-    protected $dates = [
-        'tanggal',
-    ];
+    public function report()
+    {
+        return $this->belongsTo(Report::class, 'id_report');
+    }
 
     public function karyawan()
     {
@@ -32,4 +28,5 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Pembimbing::class, 'id_pembimbing');
     }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PembimbingController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -75,7 +76,9 @@ Route::get('/report/{report}', [ReportController::class, 'show'])->name('report.
 Route::get('/report/{report}/edit', [ReportController::class, 'edit'])->name('report.edit')->middleware('auth');
 Route::put('/report/{report}', [ReportController::class, 'update'])->name('report.update')->middleware('auth');
 Route::delete('/report/{report}', [ReportController::class, 'destroy'])->name('report.destroy')->middleware('auth');
-Route::get('/report/search', [ReportController::class, 'search'])->name('report.search');
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('home.feedback');
+Route::get('/report/{id}/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 
 

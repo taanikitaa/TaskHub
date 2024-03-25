@@ -80,8 +80,8 @@
                                         <th>Tanggal</th>
                                         <th>Waktu</th>
                                         <th>Tempat</th>
-                                        <th>ID Karyawan</th>
-                                        <th>ID Pembimbing</th>
+                                        <th>Karyawan</th>
+                                        <th>Pembimbing</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -89,11 +89,11 @@
                                     @foreach($jadwals as $jadwal)
                                     <tr>
                                         <td>{{ $jadwal->id }}</td>
-                                        <td>{{ $jadwal->tanggal }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($jadwal->tanggal)->translatedFormat('l, j F Y') }}</td>
                                         <td>{{ $jadwal->waktu }}</td>
                                         <td>{{ $jadwal->tempat }}</td>
-                                        <td>{{ $jadwal->id_karyawan }}</td>
-                                        <td>{{ $jadwal->id_pembimbing }}</td>
+                                        <td>{{ $jadwal->karyawan->nama }}</td>
+                                        <td>{{ $jadwal->pembimbing->nama }}</td>
                                         <td>
                                             <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="btn btn-warning" style="background-color: #7A8FB2;">Edit</a>
                                             <form action="{{ route('jadwal.destroy', $jadwal->id) }}" method="POST" style="display: inline;">
@@ -137,7 +137,7 @@
                     <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Tempat">
                 </div>
                 <div class="form-group">
-                <label for="id_karyawan">ID Karyawan</label>
+                <label for="id_karyawan">Karyawan</label>
                 <select class="form-control" id="id_karyawan" name="id_karyawan">
                     <option value="">Pilih Karyawan</option>
                     @foreach($karyawans as $karyawan)
@@ -146,7 +146,7 @@
                 </select>
                 </div>
                 <div class="form-group">
-                    <label for="id_pembimbing">ID Pembimbing</label>
+                    <label for="id_pembimbing">Pembimbing</label>
                     <select class="form-control" id="id_pembimbing" name="id_pembimbing">
                         <option value="">Pilih Pembimbing</option>
                         @foreach($pembimbings as $pembimbing)
@@ -178,5 +178,6 @@
         }
     });
 </script>
+
 
 @endsection

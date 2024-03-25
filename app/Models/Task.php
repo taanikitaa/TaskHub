@@ -18,9 +18,9 @@ class Task extends Model
         'id_karyawan',
         'id_pembimbing',
     ];
-    public function task()
+    public function report()
     {
-        return $this->hasMany(Task::class, 'id_task', 'id');
+        return $this->hasOne(Report::class, 'id_task', 'id');
     }
 
     public function karyawan()

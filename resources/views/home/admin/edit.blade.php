@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <div class="card shadow-lg">
                         <div class="card-header">
-                            <h4>Edit Data Admin</h4>
+                            <h4>Edit Data User</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('users.update', $user->id) }}" method="POST">

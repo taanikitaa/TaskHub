@@ -37,7 +37,7 @@
                                     <input type="text" class="form-control" id="tempat" name="tempat" value="{{ $jadwal->tempat }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_karyawan">ID Karyawan</label>
+                                    <label for="id_karyawan">Karyawan</label>
                                     <select class="form-control" id="id_karyawan" name="id_karyawan">
                                         <option value="">Pilih Karyawan</option>
                                         @foreach($karyawans as $karyawan)
@@ -46,7 +46,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_pembimbing">ID Pembimbing</label>
+                                    <label for="id_pembimbing">Pembimbing</label>
                                     <select class="form-control" id="id_pembimbing" name="id_pembimbing">
                                         <option value="">Pilih Pembimbing</option>
                                         @foreach($pembimbings as $pembimbing)

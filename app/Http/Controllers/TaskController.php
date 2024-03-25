@@ -88,7 +88,7 @@ class TaskController extends Controller
     public function karyawanTasks()
     {
         $idKaryawan = auth()->user()->id;
-        $karyawanTasks = Task::where('id_karyawan', $idKaryawan)->get();
+        $karyawanTasks = Task::where('id_karyawan', $idKaryawan)->with('report')->get();        
         $karyawans = Karyawan::all(); 
         $pembimbings = Pembimbing::all(); 
         $tasks = Task::all();
