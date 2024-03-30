@@ -105,13 +105,28 @@ class TaskController extends Controller
             'id_karyawan' => 'required|exists:karyawans,id',
             'id_pembimbing' => 'required|exists:pembimbings,id',
             'id_task' => 'required|exists:tasks,id',
-            'dokumen' => 'nullable', 
+            'dokumen' => 'required|file', 
             'link_video' => 'nullable',
         ]);
 
-        Report::create($request->all());
+        if ($request->hasFile('dokumen')) {
+            $file = $request->file('dokumen');
+            $fileName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('report'), $fileName); 
+        }
+        Report::create([
+            'nama_report' => $request->nama_report,
+            'tanggal_report' => $request->tanggal_report,
+            'id_karyawan' => $request->id_karyawan,
+            'id_pembimbing' => $request->id_pembimbing,
+            'id_task' => $request->id_task,
+            'dokumen' => isset($fileName) ? $fileName : null, 
+            'link_video' => $request->link_video,
+        ]);
+
         return redirect()->route('home.report.index')->with('success', 'Report berhasil ditambahkan.');
     }
+
 
     
 }

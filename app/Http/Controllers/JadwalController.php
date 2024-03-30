@@ -44,7 +44,7 @@ class JadwalController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'waktu' => 'required|string|max:255',
+            'waktu' => 'required|string|max:255', 
             'tempat' => 'required|string|max:50',
             'id_karyawan' => 'required|integer',
             'id_pembimbing' => 'required|integer',
@@ -52,10 +52,14 @@ class JadwalController extends Controller
         $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
         $request->merge(['tanggal' => $tanggal]);
 
-        Jadwal::create($request->all());
+        $data = $request->all();
+        $data['waktu'] = Carbon::now()->format('Y-m-d H:i:s'); 
+
+        Jadwal::create($data);
 
         return redirect()->route('home.jadwal.index')->with('success', 'Jadwal created successfully.');
     }
+
 
     public function edit($id)
     {
