@@ -87,7 +87,7 @@
                                     <tr>
                                         <td>{{ $task->id }}</td>
                                         <td>{{ $task->nama_task }}</td>
-                                        <td>{{ $task->deadline }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('l, j F Y') }}</td>
                                         <td>{{ $task->level }}</td>
                                         <td>{{ $task->karyawan->nama }}</td>
                                         <td>{{ $task->pembimbing->nama }}</td>

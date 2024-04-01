@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\Karyawan;
 use App\Models\Pembimbing;
 use App\Models\Report;
+use Carbon\Carbon; 
 
 class TaskController extends Controller
 {
@@ -49,6 +50,9 @@ class TaskController extends Controller
             'id_pembimbing' => 'required|exists:pembimbings,id',
         ]);
 
+        $deadline = Carbon::parse($request->deadline); 
+        $request->merge(['deadline' => $deadline]); 
+
         Task::create($request->all());
         return redirect()->route('home.task.index')->with('success', 'Task berhasil ditambahkan.');
     }
@@ -72,6 +76,9 @@ class TaskController extends Controller
             'id_pembimbing' => 'required|exists:pembimbings,id',
         ]);
 
+        $deadline = Carbon::parse($request->deadline); 
+        $request->merge(['deadline' => $deadline]); 
+
         $task = Task::findOrFail($id);
         $task->update($request->all());
 
@@ -85,6 +92,7 @@ class TaskController extends Controller
 
         return redirect()->route('home.task.index')->with('success', 'Task berhasil dihapus.');
     }
+
     public function karyawanTasks()
     {
         $idKaryawan = auth()->user()->id;
@@ -99,34 +107,19 @@ class TaskController extends Controller
 
     public function report(Request $request)
     {
+        
         $request->validate([
             'nama_report' => 'required',
             'tanggal_report' => 'required|date',
             'id_karyawan' => 'required|exists:karyawans,id',
             'id_pembimbing' => 'required|exists:pembimbings,id',
             'id_task' => 'required|exists:tasks,id',
-            'dokumen' => 'required|file', 
+            'dokumen' => 'nullable', 
+            'keterangan' => 'nullable',
             'link_video' => 'nullable',
         ]);
 
-        if ($request->hasFile('dokumen')) {
-            $file = $request->file('dokumen');
-            $fileName = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('report'), $fileName); 
-        }
-        Report::create([
-            'nama_report' => $request->nama_report,
-            'tanggal_report' => $request->tanggal_report,
-            'id_karyawan' => $request->id_karyawan,
-            'id_pembimbing' => $request->id_pembimbing,
-            'id_task' => $request->id_task,
-            'dokumen' => isset($fileName) ? $fileName : null, 
-            'link_video' => $request->link_video,
-        ]);
-
+        Report::create($request->all());
         return redirect()->route('home.report.index')->with('success', 'Report berhasil ditambahkan.');
     }
-
-
-    
 }

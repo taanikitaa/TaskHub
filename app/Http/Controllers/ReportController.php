@@ -36,11 +36,12 @@ class ReportController extends Controller
 
     public function edit($id)
     {
-        $reports = Report::find($id); 
+        $report = Report::find($id); 
         $karyawans = Karyawan::all(); 
         $pembimbings = Pembimbing::all(); 
+        $tasks = Task::all(); 
     
-        return view('home.report.edit', compact('reports', 'karyawans', 'pembimbings'));
+        return view('home.report.edit', compact('report', 'karyawans', 'pembimbings','tasks'));
     }
 
     public function update(Request $request, $id)

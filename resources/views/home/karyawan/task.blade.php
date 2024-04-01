@@ -90,7 +90,7 @@
                     </div>
                      
                         <div class="card-body">
-                            <p class="card-text">Deadline: {{ $task->deadline }}</p>
+                            <p class="card-text">Deadline: {{ \Carbon\Carbon::parse($task->deadline)->translatedFormat('l, j F Y') }}</p>
                             <p class="card-text">Level: {{ $task->level }}</p>
                             <p class="card-text">Pembimbing: {{ $task->pembimbing->nama }}</p> 
                         </div>
