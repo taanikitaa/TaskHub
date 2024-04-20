@@ -54,7 +54,7 @@
                                 <span style="color: #fff;">Tanggal: {{ \Carbon\Carbon::parse($jadwal->tanggal)->translatedFormat('l, j F Y') }}</span>                            </h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Waktu: {{ $jadwal->waktu }}</p>
+                            <p class="card-text">Waktu: {{ \Carbon\Carbon::createFromFormat('H:i:s', $jadwal->waktu)->format('g:i A') }}</p>
                             <p class="card-text">Tempat: {{ $jadwal->tempat }}</p>
                             <p class="card-text">Pembimbing: {{ $jadwal->pembimbing->nama }}</p> 
                         </div>

@@ -90,7 +90,7 @@
                                     <tr>
                                         <td>{{ $jadwal->id }}</td>
                                         <td>{{ \Carbon\Carbon::parse($jadwal->tanggal)->translatedFormat('l, j F Y') }}</td>
-                                        <td>{{ $jadwal->waktu }}</td>
+                                        <td>{{ \Carbon\Carbon::createFromFormat('H:i:s', $jadwal->waktu)->format('g:i A') }}</td>
                                         <td>{{ $jadwal->tempat }}</td>
                                         <td>{{ $jadwal->karyawan->nama }}</td>
                                         <td>{{ $jadwal->pembimbing->nama }}</td>
