@@ -57,9 +57,7 @@ class PembimbingController extends Controller
     public function update(Request $request, Pembimbing $pembimbing)
     {
         $request->validate([
-            'nama_pembimbing' => 'required',
-            'alamat' => 'required',
-            'no_telepon' => 'required',
+            'nama' => 'required',
             'email' => 'required|email|unique:pembimbings,email,' . $pembimbing->id,
             'password' => 'required',
         ]);

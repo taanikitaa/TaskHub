@@ -26,11 +26,11 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal</label>
-                                    <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" value="{{ $jadwal->tanggal }}">
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $jadwal->tanggal }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="hari">Hari</label>
-                                    <input type="text" class="form-control" id="waktu" name="waktu" value="{{ $jadwal->waktu }}">
+                                    <label for="hari">Waktu</label>
+                                    <input type="time" class="form-control" id="waktu" name="waktu" value="{{ $jadwal->waktu }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat">Tempat</label>

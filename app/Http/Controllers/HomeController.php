@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Report;
 use App\Models\Karyawan;
+use App\Models\Absen;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -33,14 +34,21 @@ class HomeController extends Controller
         $totalReports = Report::count();
         $totalKaryawan = Karyawan::count();
 
-        $currentTime = Carbon::now()->format('Y-m-d H:i:s');
-
+        $absen = false; 
+        $currentTime = Carbon::now()->format('Y-m-d');
+        $absensiHariIni = Absen::where('karyawan_id', auth()->user()->karyawan_id)
+                                ->whereDate('created_at', $currentTime)
+                                ->first();
+        if ($absensiHariIni) {
+            $absen = true; 
+        }
         return view('dashboard', [
             'totalUsers' => $totalUsers,
             'totalTasks' => $totalTasks,
             'totalReports' => $totalReports,
             'totalKaryawan' => $totalKaryawan,
             'currentTime' => $currentTime,
+            'absen' => $absen,
         ]);
     }
 }

@@ -26,7 +26,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="nama_pembimbing">Nama Pembimbing</label>
-                                    <input type="text" class="form-control" id="nama_pembimbing" name="nama_pembimbing" value="{{ $pembimbing->nama_pembimbing }}">
+                                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $pembimbing->nama }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>

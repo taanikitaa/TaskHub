@@ -82,10 +82,12 @@ class JadwalController extends Controller
         $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
         $request->merge(['tanggal' => $tanggal]);
 
+        $waktu = Carbon::createFromFormat('h:i A', $request->waktu)->format('H:i:s');
+        $request->merge(['waktu' => $waktu]);
+
         $jadwal->update($request->all());
 
-        return redirect()->route('home.jadwal.index')
-            ->with('success', 'Jadwal updated successfully');
+        return redirect()->route('home.jadwal.index')->with('success', 'Jadwal updated successfully');
     }
 
     public function destroy(Jadwal $jadwal)
