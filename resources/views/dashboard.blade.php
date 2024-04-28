@@ -100,11 +100,11 @@
                     <a href="/tasks/karyawan" class="btn btn-outline-dark"><i class="fas fa-tasks"></i> Task</a>
                     <a href="{{route('task.report')}}" class="btn btn-outline-dark"><i class="fas fa-chart-bar"></i> Report</a>
                     <a href="/jadwal/karyawan" class="btn btn-outline-dark"><i class="far fa-calendar-alt"></i> Jadwal</a>
-                        @if(!$absen)
-                        <a href="/absen" class="btn btn-outline-dark"><i class="far fa-calendar-alt"></i> Absensi Masuk</a>
-                        @else
-                            <p>Anda sudah melakukan absen hari ini.</p>
-                        @endif
+                    @if(!$statusAbsen)
+                        <a href="{{ route('absensi.index') }}" class="btn btn-primary" style="background-color: #3A5169; color: white;">Absen Hari Ini</a>
+                    @else
+                        <p>Anda sudah absen hari ini.</p>
+                    @endif
                     @endcan
                 </div>
                 

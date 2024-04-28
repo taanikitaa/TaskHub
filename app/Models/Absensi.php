@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Karyawan;
 
-
-class Absen extends Model
+class Absensi extends Model
 {
     use HasFactory;
-    protected $fillable = ['karyawan_id', 'keterangan'];
+
+    protected $fillable = ['karyawan_id', 'keterangan', 'tanggal'];
 
     public function karyawan()
     {
-        return $this->belongsTo(Karyawan::class, 'id_karyawan', 'id');
+        return $this->belongsTo(Karyawan::class);
     }
 }

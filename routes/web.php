@@ -8,7 +8,7 @@ use App\Http\Controllers\PembimbingController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -91,7 +91,7 @@ Route::put('/pembimbing/{pembimbing}', [PembimbingController::class, 'update'])-
 Route::delete('/pembimbing/{pembimbing}', [PembimbingController::class, 'destroy'])->name('pembimbing.destroy')->middleware('auth');
 Route::get('/pembimbing/search', [PembimbingController::class, 'search'])->name('pembimbing.search');
 
-Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index')->middleware('auth');
-Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store')->middleware('auth');
+Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
+Route::post('/absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

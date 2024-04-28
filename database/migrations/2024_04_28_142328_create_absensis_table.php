@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absens', function (Blueprint $table) {
+        Schema::create('absensis', function (Blueprint $table) {
             $table->id();
-            $table->string('karyawan_id');
-            $table->enum('keterangan', ['izin', 'sakit', 'masuk']);
+            $table->foreignId('karyawan_id')->constrained('karyawans');
+            $table->string('keterangan');
+            $table->date('tanggal');
             $table->timestamps();
-
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absens');
+        Schema::dropIfExists('absensis');
     }
 };

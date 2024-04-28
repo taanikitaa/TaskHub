@@ -46,6 +46,14 @@
                     <span class="nav-link-text ms-1">Kelola Data Karyawan PKL</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/absensi">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">calendar_today</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Kelola Data Absensi</span>
+                </a>
+            </li>
             @endcan
             @can('manage task data')
             <li class="nav-item">
