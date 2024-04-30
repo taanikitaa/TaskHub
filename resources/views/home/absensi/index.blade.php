@@ -46,7 +46,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Absen Karyawan</h2>
+                    <h2 class="text-center" style="color: white;">Absen Karyawan</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('absensi.store') }}" method="POST">
